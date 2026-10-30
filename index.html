@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insertion Sort Visualizer</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>Insertion Sort</h1>
+        <p>Builds the sorted prefix one item at a time, shifting larger elements right to make room.</p>
+        <div class="badges"><b>TIME&nbsp; O(n²)</b><b>SPACE&nbsp; O(1)</b></div>
+      </header>
+      <section class="meta"><span>n = len(a) = <strong id="length">10</strong></span><span id="arrayText"></span></section>
+      <section class="viewport"><div id="keyTag">KEY</div><div id="stage"></div></section>
+      <section class="status">
+        <button id="iStat">i = 1</button><button id="jStat">j = 0</button>
+        <button id="keyStat">key = —</button><button id="arrayStat">a = []</button>
+      </section>
+      <section class="controls">
+        <button id="play">▶ Play</button><button id="pause">Ⅱ Pause</button>
+        <button id="reset">↻ Reset</button><button id="step">Step Forward</button>
+        <label>Speed <input id="speed" type="range" min="0.5" max="3" value="1" step="0.5"></label>
+        <input id="custom" placeholder="Custom array, e.g. 4, 2, 8, 1" aria-label="Custom array">
+        <button id="apply">Apply</button>
+      </section>
+      <section class="code">
+        <div class="codeTitle"><i></i><i></i><i></i><b>insertion_sort.py</b><em id="phaseText">Ready</em></div>
+        <pre id="source"></pre>
+      </section>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
