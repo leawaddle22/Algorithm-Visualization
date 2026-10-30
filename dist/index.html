@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore sorting algorithms through interactive 3D visualizations with SORTLAB." />
+    <title>SORTLAB — Sorting, Made Clear</title>
+    <link rel="stylesheet" crossorigin href="/assets/home-oEHhAlt-.css">
+  </head>
+  <body class="home-page">
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="SORTLAB home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>SORT<span class="brand-light">LAB</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
+        <a class="nav-link" href="#algorithms">Algorithms</a>
+        <a class="nav-link" href="#about">About</a>
+      </nav>
+      <a class="nav-cta" href="#algorithms">Start exploring <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> A clearer way to learn algorithms</p>
+          <h1>Understand Sorting,<br />One Step at a Time.</h1>
+          <p class="hero-description">Explore interactive sorting algorithms through 3D visualizations. Watch how elements move, compare their performance, and understand the logic behind every operation.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#algorithms">Explore algorithms <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="#about">Get to know SORTLAB <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-note"><span aria-hidden="true">✦</span> Learn by seeing, not just reading.</div>
+        </div>
+
+        <div class="hero-art" role="img" aria-label="A 3D-inspired arrangement of pastel bars from low to high">
+          <div class="art-topline"><span><i></i> SORT IN PROGRESS</span><span class="art-counter">01 / 03</span></div>
+          <div class="art-chart">
+            <div class="chart-grid"></div>
+            <div class="chart-bars">
+              <span class="chart-bar bar-lilac" style="--bar-height: 31%"><b>2</b></span>
+              <span class="chart-bar bar-peach" style="--bar-height: 63%"><b>5</b></span>
+              <span class="chart-bar bar-pink" style="--bar-height: 44%"><b>3</b></span>
+              <span class="chart-bar bar-sage" style="--bar-height: 82%"><b>7</b></span>
+              <span class="chart-bar bar-yellow" style="--bar-height: 54%"><b>4</b></span>
+              <span class="chart-bar bar-lilac" style="--bar-height: 94%"><b>9</b></span>
+              <span class="chart-bar bar-pink" style="--bar-height: 72%"><b>6</b></span>
+            </div>
+            <div class="chart-baseline"></div>
+          </div>
+          <div class="art-footer"><span><i class="legend-dot compare-dot"></i> comparing</span><span><i class="legend-dot sorted-dot"></i> sorted</span><span class="art-step">Step 04 <b>→</b></span></div>
+          <div class="art-caption"><span class="caption-icon">↗</span><span><b>Every move has a reason.</b><small>Follow the logic behind the motion.</small></span></div>
+          <span class="art-sparkle sparkle-one" aria-hidden="true">✳</span>
+          <span class="art-sparkle sparkle-two" aria-hidden="true">✦</span>
+        </div>
+      </section>
+
+      <section class="algorithms section-wrap" id="algorithms">
+        <div class="section-heading">
+          <div><p class="eyebrow">THE ALGORITHM LIBRARY</p><h2>Explore algorithms</h2></div>
+          <p>Three classic approaches. One clear view of how they work.</p>
+        </div>
+        <div class="algorithm-grid">
+          <article class="algorithm-card insertion-card">
+            <div class="card-top"><span class="algorithm-number">01</span><span class="algorithm-type">BUILD &amp; INSERT</span></div>
+            <div class="mini-chart" role="img" aria-label="Pastel bars illustrating insertion sort">
+              <span style="--bar-height: 38%"></span><span style="--bar-height: 72%"></span><span style="--bar-height: 53%"></span><span style="--bar-height: 90%"></span><span style="--bar-height: 65%"></span><span style="--bar-height: 43%"></span><span style="--bar-height: 80%"></span>
+            </div>
+            <h3>Insertion Sort</h3>
+            <p class="card-description">Grow a sorted section one element at a time, shifting items until each one finds its place.</p>
+            <div class="complexity">
+              <span><small>TIME · AVERAGE</small><b>O(n²)</b></span>
+              <span><small>SPACE</small><b>O(1)</b></span>
+            </div>
+            <a class="card-link" href="./insertion-sort.html">Explore visualization <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="algorithm-card bubble-card">
+            <div class="card-top"><span class="algorithm-number">02</span><span class="algorithm-type">COMPARE &amp; SWAP</span></div>
+            <div class="mini-chart" role="img" aria-label="Pastel bars illustrating bubble sort">
+              <span style="--bar-height: 78%"></span><span style="--bar-height: 51%"></span><span style="--bar-height: 88%"></span><span style="--bar-height: 42%"></span><span style="--bar-height: 68%"></span><span style="--bar-height: 35%"></span><span style="--bar-height: 59%"></span>
+            </div>
+            <h3>Bubble Sort</h3>
+            <p class="card-description">Compare neighbors and swap out-of-order pairs as larger values bubble toward the end.</p>
+            <div class="complexity">
+              <span><small>TIME · AVERAGE</small><b>O(n²)</b></span>
+              <span><small>SPACE</small><b>O(1)</b></span>
+            </div>
+            <a class="card-link" href="./bubble-sort.html">Explore visualization <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="algorithm-card selection-card">
+            <div class="card-top"><span class="algorithm-number">03</span><span class="algorithm-type">FIND &amp; PLACE</span></div>
+            <div class="mini-chart" role="img" aria-label="Pastel bars illustrating selection sort">
+              <span style="--bar-height: 61%"></span><span style="--bar-height: 87%"></span><span style="--bar-height: 45%"></span><span style="--bar-height: 74%"></span><span style="--bar-height: 35%"></span><span style="--bar-height: 92%"></span><span style="--bar-height: 55%"></span>
+            </div>
+            <h3>Selection Sort</h3>
+            <p class="card-description">Find the smallest value in the unsorted section, then place it at the front.</p>
+            <div class="complexity">
+              <span><small>TIME · AVERAGE</small><b>O(n²)</b></span>
+              <span><small>SPACE</small><b>O(1)</b></span>
+            </div>
+            <a class="card-link" href="./selection-sort.html">Explore visualization <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section class="why-section section-wrap">
+        <div class="section-heading">
+          <div><p class="eyebrow">MADE FOR THE “AHA” MOMENT</p><h2>More than just a sort.</h2></div>
+          <p>Make the invisible steps of an algorithm easy to see.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature"><span class="feature-icon icon-interactive" aria-hidden="true">⏵</span><div><h3>Interactive learning</h3><p>Play, pause, and step through each operation at your own pace.</p></div></article>
+          <article class="feature"><span class="feature-icon icon-visual" aria-hidden="true">◈</span><div><h3>Visual understanding</h3><p>See values compared, shifted, and swapped in real time.</p></div></article>
+          <article class="feature"><span class="feature-icon icon-analysis" aria-hidden="true">⌁</span><div><h3>Algorithm analysis</h3><p>Connect what you see to time and space complexity.</p></div></article>
+        </div>
+      </section>
+
+      <section class="about-section section-wrap" id="about">
+        <div class="about-mark" aria-hidden="true"><span>01</span><i></i><i></i><i></i><i></i></div>
+        <div class="about-copy"><p class="eyebrow">A LITTLE ABOUT US</p><h2>Big ideas, made visible.</h2><p>SORTLAB is an educational project built to make sorting algorithms easier to understand. By bringing each step to life in an interactive 3D space, we make it easier to follow the logic—not just memorize the result.</p><a class="text-link" href="#algorithms">Find your first algorithm <span aria-hidden="true">→</span></a></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-brand"><a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>SORT<span class="brand-light">LAB</span></span></a><p>Sorting algorithms, one clear step at a time.</p></div>
+        <div class="footer-algorithms"><span class="footer-label">ALGORITHMS</span><a href="./insertion-sort.html">Insertion Sort</a><a href="./bubble-sort.html">Bubble Sort</a><a href="./selection-sort.html">Selection Sort</a></div>
+        <div class="footer-explore"><span class="footer-label">EXPLORE</span><a href="#algorithms">Algorithm library</a><a href="#about">About SORTLAB</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 SORTLAB · An educational project</span><span>Made for curious minds <b aria-hidden="true">✦</b></span></div>
+    </footer>
+  </body>
+</html>

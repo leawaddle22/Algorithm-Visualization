@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubble Sort Visualizer — SORTLAB</title>
+    <script type="module" crossorigin src="/assets/bubble-DXighexi.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/three.module-C9OSE88F.js">
+    <link rel="modulepreload" crossorigin href="/assets/comparison-rWBe5BTz.js">
+    <link rel="stylesheet" crossorigin href="/assets/three-mnU-PiOA.css">
+    <link rel="stylesheet" crossorigin href="/assets/comparison-BihyKZUg.css">
+  </head>
+  <body>
+    <main class="app comparison-app" data-algorithm="bubble">
+      <a class="back-home" href="./index.html">← SORTLAB home</a>
+      <header>
+        <h1>Bubble Sort</h1>
+        <p>Compare neighboring values and swap them when they are out of order. Each pass moves the largest unsorted value to the end.</p>
+        <div class="badges"><b>TIME&nbsp; O(n²) AVERAGE</b><b>SPACE&nbsp; O(1)</b></div>
+      </header>
+      <section class="meta"><span>n = <strong id="length">10</strong></span><span id="arrayText"></span></section>
+      <section class="viewport">
+        <div id="stage"></div>
+        <div class="algorithm-indicators" aria-hidden="true">
+          <span id="comparingTag" class="indicator indicator-comparing">COMPARING</span>
+        </div>
+      </section>
+      <section class="status">
+        <button id="operationStat">Ready to begin</button>
+        <button id="comparisonStat">Comparisons: 0</button>
+        <button id="swapStat">Swaps: 0</button>
+        <button id="passStat">Pass: —</button>
+        <button id="indicesStat">Indices: —</button>
+      </section>
+      <section class="controls">
+        <button id="play">▶ Play</button><button id="pause">Ⅱ Pause</button>
+        <button id="reset">↻ Reset</button><button id="step">Step Forward</button>
+        <label>Speed <input id="speed" type="range" min="0.5" max="3" value="1" step="0.5"></label>
+        <input id="custom" type="text" placeholder="Custom array, e.g. 4, 2, 8, 1" aria-label="Custom array">
+        <button id="apply">Apply</button>
+      </section>
+      <p class="array-error" id="arrayError" role="status" aria-live="polite"></p>
+      <section class="code">
+        <div class="codeTitle"><i></i><i></i><i></i><b>bubble_sort.py</b><em id="phaseText">Ready</em></div>
+        <pre id="source"></pre>
+      </section>
+    </main>
+  </body>
+</html>

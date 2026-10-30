@@ -1,0 +1,71 @@
+.comparison-app { max-width: 1080px; }
+.back-home {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #f5dce7;
+  text-decoration: none;
+  font-size: 13px;
+}
+.back-home:hover { color: #fff; }
+.comparison-app header p { max-width: 720px; }
+.comparison-app .viewport { position: relative; }
+.comparison-app #stage canvas { display: block; }
+.comparison-app .algorithm-indicators {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.comparison-app .indicator {
+  position: absolute;
+  display: none;
+  transform: translate(-50%, calc(-100% - var(--indicator-offset, 0px)));
+  padding: 4px 7px;
+  border: 1px solid #ffffff73;
+  border-radius: 5px;
+  color: #382535;
+  font: 800 9px/1.1 Inter, system-ui, sans-serif;
+  letter-spacing: .45px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px #00000035;
+}
+.comparison-app .indicator-comparing { background: #f3b6ca; }
+.comparison-app .indicator-minimum { background: #f3b6ca; }
+.comparison-app .indicator-current { background: #f1d09f; }
+.comparison-app .indicator-scanning { background: #cbb7e9; }
+.comparison-app .status {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.comparison-app .status button {
+  min-width: 0;
+  min-height: 41px;
+  padding: 8px 10px;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+.comparison-app .status button:first-child { grid-column: span 2; }
+.comparison-app .array-error {
+  min-height: 18px;
+  margin: 5px 0 0;
+  color: #ffe2ed;
+  font-size: 12px;
+}
+.comparison-app .controls { justify-content: center; }
+.comparison-app .controls label { margin-left: auto; }
+.comparison-app .controls input[type="range"] { width: 110px; }
+.comparison-app .controls input[type="text"] { min-width: 190px; }
+.comparison-app .code { margin-bottom: 8px; }
+.comparison-app .code pre { min-height: 166px; }
+
+@media (max-width: 700px) {
+  .back-home { margin-bottom: 16px; }
+  .comparison-app .status { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .comparison-app .status button:first-child { grid-column: 1 / -1; }
+  .comparison-app .status button { min-width: 0; }
+  .comparison-app .controls input[type="text"] { flex: 1; min-width: 150px; }
+  .comparison-app .controls { justify-content: flex-start; }
+  .comparison-app .controls label { margin-left: 0; }
+  .comparison-app .controls input[type="range"] { width: 90px; }
+}
