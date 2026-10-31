@@ -1,0 +1,6 @@
+export const DEFAULT_VALUES = [2, 10, 9, 6, 1, 7, 3, 5, 4, 8];
+
+export const BAR_COLORS = [
+  0xf3b6ca, 0xcbb7e9, 0xf6c29f, 0xd99ab8, 0xb9d8c2,
+  0xe8a0a9, 0xb8c6e8, 0xd9b5dc, 0xf1d09f, 0xc8b2d8
+];

@@ -5,9 +5,9 @@ module.exports = {
     rollupOptions: {
       input: {
         home: resolve(__dirname, 'index.html'),
-        insertion: resolve(__dirname, 'insertion-sort.html'),
-        bubble: resolve(__dirname, 'bubble-sort.html'),
-        selection: resolve(__dirname, 'selection-sort.html')
+        insertion: resolve(__dirname, 'pages', 'insertion-sort.html'),
+        bubble: resolve(__dirname, 'pages', 'bubble-sort.html'),
+        selection: resolve(__dirname, 'pages', 'selection-sort.html')
       }
     }
   }

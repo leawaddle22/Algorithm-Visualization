@@ -13,15 +13,6 @@ header p{max-width:680px;margin:5px auto 20px;color:#f6dbe5;font-size:16px;line-
 .viewport:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 55%,#f6cadd12)}
 #stage{width:100%;height:100%}
 #keyTag{position:absolute;z-index:2;display:none;color:#ffe2ed;font-size:14px;font-weight:800;letter-spacing:1px;text-shadow:0 2px 6px #211827;transform:translate(-50%,-100%)}
-.status,.controls{display:flex;gap:9px;align-items:center;margin-top:12px;flex-wrap:wrap}
-.status button,.controls button,.controls input{background:#503448;border:1px solid #a87d94;color:#fff0f5;border-radius:6px;padding:10px 14px;font:inherit}
-.status button{font-family:monospace;font-size:14px;flex:1;min-width:100px;text-align:left}
-.status button:last-child{flex:3;min-width:260px}
-.controls button{cursor:pointer}
-.controls button:hover{border-color:#f1bfd2;color:#fff}
-.controls label{margin-left:auto;color:#f5dce7;white-space:nowrap}
-.controls input[type=range]{accent-color:#d99ab8;vertical-align:middle}
-.controls input[type=text]{min-width:220px}
 .code{margin-top:16px;border:1px solid #8e6077;border-radius:8px;overflow:hidden;background:#2c1d2b}
 .codeTitle{height:38px;background:#503448;display:flex;align-items:center;gap:7px;padding:0 14px}
 .codeTitle i{width:8px;height:8px;border-radius:50%;background:#ef9cae}
@@ -36,9 +27,5 @@ pre{margin:0;padding:11px 12px 14px;overflow:auto;line-height:1.6;font:14px/1.6 
   .meta{font-size:14px;gap:8px;margin:16px 0 10px}
   .meta span{padding:7px 11px}
   .viewport{height:clamp(320px,70vw,430px);min-height:320px}
-  .status button{min-width:calc(50% - 5px)}
-  .status button:last-child{min-width:100%;order:5}
-  .controls label{margin-left:0}
-  .controls input[type=text]{flex:1;min-width:150px}
   pre{font-size:12px}
 }

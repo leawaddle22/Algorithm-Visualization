@@ -3,36 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Selection Sort Visualizer — SORTLAB</title>
-    <script type="module" crossorigin src="/assets/selection-DXighexi.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/three.module-C9OSE88F.js">
-    <link rel="modulepreload" crossorigin href="/assets/comparison-rWBe5BTz.js">
-    <link rel="stylesheet" crossorigin href="/assets/three-mnU-PiOA.css">
-    <link rel="stylesheet" crossorigin href="/assets/comparison-BihyKZUg.css">
+    <title>Bubble Sort Visualizer — SORTLAB</title>
+    <script type="module" crossorigin src="/assets/bubble-DpRZ1VQG.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/renderer-C-AfQBZo.js">
+    <link rel="modulepreload" crossorigin href="/assets/comparison-visualizer-BS2GrN_n.js">
+    <link rel="stylesheet" crossorigin href="/assets/renderer-5URRouTn.css">
+    <link rel="stylesheet" crossorigin href="/assets/comparison-visualizer-Dd-eyheO.css">
+    <link rel="stylesheet" crossorigin href="/assets/global-bx63GAS2.css">
   </head>
   <body>
-    <main class="app comparison-app" data-algorithm="selection">
-      <a class="back-home" href="./index.html">← SORTLAB home</a>
+    <main class="app comparison-app" data-algorithm="bubble">
+      <a class="back-home" href="../index.html">← SORTLAB home</a>
       <header>
-        <h1>Selection Sort</h1>
-        <p>Find the smallest value in the unsorted section, then place it at the front. Repeat until every value is in order.</p>
+        <h1>Bubble Sort</h1>
+        <p>Compare neighboring values and swap them when they are out of order. Each pass moves the largest unsorted value to the end.</p>
         <div class="badges"><b>TIME&nbsp; O(n²) AVERAGE</b><b>SPACE&nbsp; O(1)</b></div>
       </header>
       <section class="meta"><span>n = <strong id="length">10</strong></span><span id="arrayText"></span></section>
       <section class="viewport">
         <div id="stage"></div>
         <div class="algorithm-indicators" aria-hidden="true">
-          <span id="minimumTag" class="indicator indicator-minimum">MIN</span>
-          <span id="currentTag" class="indicator indicator-current">CURRENT</span>
-          <span id="scanningTag" class="indicator indicator-scanning">SCANNING</span>
+          <span id="comparingTag" class="indicator indicator-comparing">COMPARING</span>
         </div>
       </section>
       <section class="status">
         <button id="operationStat">Ready to begin</button>
         <button id="comparisonStat">Comparisons: 0</button>
         <button id="swapStat">Swaps: 0</button>
-        <button id="minimumStat">Minimum: —</button>
-        <button id="destinationStat">Destination: —</button>
+        <button id="passStat">Pass: —</button>
+        <button id="indicesStat">Indices: —</button>
       </section>
       <section class="controls">
         <button id="play">▶ Play</button><button id="pause">Ⅱ Pause</button>
@@ -43,7 +42,7 @@
       </section>
       <p class="array-error" id="arrayError" role="status" aria-live="polite"></p>
       <section class="code">
-        <div class="codeTitle"><i></i><i></i><i></i><b>selection_sort.py</b><em id="phaseText">Ready</em></div>
+        <div class="codeTitle"><i></i><i></i><i></i><b>bubble_sort.py</b><em id="phaseText">Ready</em></div>
         <pre id="source"></pre>
       </section>
     </main>

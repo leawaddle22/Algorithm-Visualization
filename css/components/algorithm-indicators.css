@@ -34,38 +34,9 @@
 .comparison-app .indicator-minimum { background: #f3b6ca; }
 .comparison-app .indicator-current { background: #f1d09f; }
 .comparison-app .indicator-scanning { background: #cbb7e9; }
-.comparison-app .status {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-.comparison-app .status button {
-  min-width: 0;
-  min-height: 41px;
-  padding: 8px 10px;
-  overflow-wrap: anywhere;
-  font-size: 12px;
-}
-.comparison-app .status button:first-child { grid-column: span 2; }
-.comparison-app .array-error {
-  min-height: 18px;
-  margin: 5px 0 0;
-  color: #ffe2ed;
-  font-size: 12px;
-}
-.comparison-app .controls { justify-content: center; }
-.comparison-app .controls label { margin-left: auto; }
-.comparison-app .controls input[type="range"] { width: 110px; }
-.comparison-app .controls input[type="text"] { min-width: 190px; }
 .comparison-app .code { margin-bottom: 8px; }
 .comparison-app .code pre { min-height: 166px; }
 
 @media (max-width: 700px) {
   .back-home { margin-bottom: 16px; }
-  .comparison-app .status { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .comparison-app .status button:first-child { grid-column: 1 / -1; }
-  .comparison-app .status button { min-width: 0; }
-  .comparison-app .controls input[type="text"] { flex: 1; min-width: 150px; }
-  .comparison-app .controls { justify-content: flex-start; }
-  .comparison-app .controls label { margin-left: 0; }
-  .comparison-app .controls input[type="range"] { width: 90px; }
 }
