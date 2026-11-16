@@ -5,6 +5,7 @@ import { parseArrayInput } from '../utils/helpers.js';
 import { bindAnimationControls, getAnimationSpeed } from './animation-controller.js';
 import { renderCode } from './code-highlighter.js';
 import { updateComparisonStatistics } from './statistics.js';
+import { createCompletionAnimation } from './completion-animation.js';
 import {
   createComparisonBars,
   createVisualization,
@@ -34,6 +35,7 @@ export function startComparisonVisualizer({ algorithm, code, buildFrames }) {
   let motion = null;
   let elapsed = 0;
   let last = performance.now();
+  const completionAnimation = createCompletionAnimation();
 
   function setTagPosition(element, index, verticalOffset = 0, followBar = true) {
     if (index === null || index < 0 || index >= bars.length) {
@@ -141,9 +143,16 @@ export function startComparisonVisualizer({ algorithm, code, buildFrames }) {
     if (moves.length) motion = { moves, elapsed: 0 };
   }
 
+  function startCompletionIfReady() {
+    if (frameIndex === frames.length - 1 && !motion) {
+      completionAnimation.start(frames[frameIndex].order);
+    }
+  }
+
   function advanceFrame() {
     if (frameIndex >= frames.length - 1) {
       playing = false;
+      startCompletionIfReady();
       return;
     }
 
@@ -153,6 +162,7 @@ export function startComparisonVisualizer({ algorithm, code, buildFrames }) {
     startMotion(frames[frameIndex]);
 
     if (frameIndex === frames.length - 1) playing = false;
+    startCompletionIfReady();
   }
 
   function reset(values = originalValues) {
@@ -161,6 +171,7 @@ export function startComparisonVisualizer({ algorithm, code, buildFrames }) {
     pendingSteps = 0;
     motion = null;
     elapsed = 0;
+    completionAnimation.cancel();
     disposeBars(scene, bars);
     originalValues = values.slice();
     bars = createComparisonBars(scene, originalValues);
@@ -238,6 +249,7 @@ export function startComparisonVisualizer({ algorithm, code, buildFrames }) {
         });
         motion = null;
         updateIndicators(frames[frameIndex]);
+        startCompletionIfReady();
         if (pendingSteps > 0) {
           pendingSteps -= 1;
           advanceFrame();
@@ -253,6 +265,7 @@ export function startComparisonVisualizer({ algorithm, code, buildFrames }) {
       if (elapsed >= 760 / getAnimationSpeed()) advanceFrame();
     }
 
+    completionAnimation.update(delta, getAnimationSpeed());
     renderer.render(scene, camera);
   }
 

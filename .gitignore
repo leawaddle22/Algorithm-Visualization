@@ -1,0 +1,7 @@
+.vs/
+.vscode/
+node_modules/
+dist/
+desktop.ini
+
+PROJECT_GUIDE.txt

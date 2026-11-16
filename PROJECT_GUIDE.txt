@@ -1,0 +1,250 @@
+SORTLAB PROJECT GUIDE
+====================
+
+What this project is
+--------------------
+SORTLAB is a small website for learning sorting algorithms. The homepage
+introduces the project and links to three interactive visualizations:
+Insertion Sort, Bubble Sort, and Selection Sort. The visualizations use
+JavaScript and Three.js to display values as 3D bars.
+
+How the project is organized
+----------------------------
+Files that define the website are organized into HTML pages, CSS styles,
+JavaScript algorithms and shared modules. Other folders are created by the
+build tools, installed as dependencies, or used by the development environment.
+
+Root files
+----------
+index.html
+  Homepage markup. It contains the site navigation, introduction, algorithm
+  cards, project description, and footer. It links to the homepage stylesheets.
+
+package.json
+  Project name and package configuration. It lists Three.js and Vite and
+  provides the npm commands: "npm run dev" starts the local development
+  server, and "npm run build" creates a production build. The test command is
+  currently a placeholder and does not run a test suite.
+
+package-lock.json
+  Records the exact installed dependency versions and their dependency tree so
+  installs are repeatable.
+
+vite.config.js
+  Tells Vite which HTML files are entry points for the production build:
+  the homepage and the three algorithm pages.
+
+.gitignore
+  Tells Git not to track node_modules/, dist/, or desktop.ini.
+
+desktop.ini
+  Windows folder display metadata. It is not part of the website.
+
+PROJECT_GUIDE.txt
+  This file. It explains the project files and folders.
+
+pages/
+------
+Each HTML file in this folder is the page shell for one interactive sorting
+visualization. The pages provide the headings, controls, status fields,
+visualization area, and code display. Each page loads its matching JavaScript
+algorithm entry point.
+
+pages/insertion-sort.html
+  Insertion Sort page. Includes the array display, key indicator, counters,
+  playback controls, and source-code panel.
+
+pages/bubble-sort.html
+  Bubble Sort page. Includes comparison indicators, pass and swap statistics,
+  playback controls, and source-code panel.
+
+pages/selection-sort.html
+  Selection Sort page. Includes minimum/current/scanning indicators,
+  comparison statistics, playback controls, and source-code panel.
+
+css/
+----
+Stylesheets for the shared site, homepage, algorithm pages, and reusable
+interface components.
+
+css/global.css
+  Defines shared colors and CSS variables used throughout the website, plus
+  the global box-sizing rule.
+
+css/home.css
+  Styles the homepage layout and sections, including the hero, decorative
+  charts, feature panels, and about section. It also contains responsive
+  layout rules for smaller screens.
+
+css/visualization.css
+  Styles the algorithm pages: headers, badges, visualization viewport,
+  status and code panels, code highlighting, and small-screen layout.
+
+css/components/
+  Styles shared pieces that are used by pages.
+
+css/components/algorithm-indicators.css
+  Positions and colors the labels that identify compared or selected bars in
+  the Bubble Sort and Selection Sort visualizations.
+
+css/components/cards.css
+  Styles the algorithm cards and their decorative mini charts on the homepage.
+
+css/components/controls.css
+  Styles the play/pause/reset/step controls, speed slider, custom-array input,
+  status fields, and validation message.
+
+css/components/navbar.css
+  Styles the homepage navigation, brand mark, footer, and their responsive
+  layouts.
+
+js/
+---
+JavaScript for sorting algorithms, shared visualization behavior, and common
+helpers. The files are divided by role to keep algorithm logic separate from
+page rendering and utility functions.
+
+js/algorithms/
+  Contains one entry point and algorithm-specific frame-building logic for
+  each sorting page.
+
+js/algorithms/insertion-sort.js
+  Runs Insertion Sort. Creates and positions the bars, advances the key and
+  cursor through the algorithm, updates the explanatory code and statistics,
+  and connects the playback and custom-array controls.
+
+js/algorithms/bubble-sort.js
+  Defines the displayed Bubble Sort pseudocode and builds a sequence of
+  comparison, swap, and pass frames. It starts the shared comparison
+  visualizer with those frames.
+
+js/algorithms/selection-sort.js
+  Defines the displayed Selection Sort pseudocode and builds frames for
+  scanning for the minimum and placing it at each destination. It starts the
+  shared comparison visualizer.
+
+js/modules/
+  Shared features used by the algorithm entry points.
+
+js/modules/animation-controller.js
+  Connects the play, pause, reset, step, and apply buttons to callbacks, and
+  reads the selected playback speed.
+
+js/modules/array-manager.js
+  Creates a complete default frame object for the comparison visualizer,
+  including the bar order, active indices, counters, phase, and operation text.
+
+js/modules/code-highlighter.js
+  Renders pseudocode lines into the page, marks the active line, and applies
+  syntax coloring when requested.
+
+js/modules/comparison-visualizer.js
+  Shared Three.js player for Bubble Sort and Selection Sort. It creates bars,
+  advances through prebuilt frames, animates their movement, updates labels and
+  statistics, and handles controls and resizing.
+
+js/modules/completion-animation.js
+  Plays the small sequential bar-jump animation after a sort is complete. It
+  can also be started or cancelled by the page.
+
+js/modules/renderer.js
+  Shared Three.js setup and bar-rendering functions. It creates the scene,
+  camera, lights, renderer, value labels, and comparison bars; calculates bar
+  sizes and positions; resizes the view; and disposes of bar resources.
+
+js/modules/statistics.js
+  Updates the displayed array, length, algorithm phase, operation, and
+  algorithm-specific counters and indices.
+
+js/utils/
+  Small functions and data shared throughout the JavaScript code.
+
+js/utils/constants.js
+  Holds the default starting values and the palette of bar colors.
+
+js/utils/dom.js
+  Looks up required page elements by ID and reports an error if one is missing.
+
+js/utils/helpers.js
+  Validates and parses comma-separated user arrays and formats arrays for
+  display.
+
+docs/
+-----
+docs/README.md
+  The existing project README. It gives a short project overview, summarizes
+  the main source folders, and lists the local development and build commands.
+
+dist/
+-----
+Generated production website output created by "npm run build". It contains
+the built HTML pages and bundled/minified JavaScript and CSS assets. Asset
+filenames include build-generated hashes and can change on a later build.
+This folder is ignored by Git and should generally be regenerated from the
+source files instead of edited directly.
+
+Current build output:
+  dist/index.html
+    Built homepage.
+  dist/pages/bubble-sort.html
+    Built Bubble Sort page.
+  dist/pages/insertion-sort.html
+    Built Insertion Sort page.
+  dist/pages/selection-sort.html
+    Built Selection Sort page.
+  dist/assets/
+    Bundled JavaScript and CSS used by those pages, including separate
+    algorithm bundles and shared visualizer/style bundles.
+
+node_modules/
+-------------
+Installed third-party packages used by the project. This folder is created by
+npm and is ignored by Git; it can be recreated with "npm install". Do not edit
+these files to change SORTLAB.
+
+The direct runtime dependency is three (Three.js), and the build tool is vite.
+The installed folder also contains their supporting packages, such as rolldown,
+postcss, nanoid, picomatch, tinyglobby, fdir, lightningcss, and source-map-js.
+The .bin/ folder contains command shims for installed tools. The .vite/deps/
+folder contains Vite's local dependency optimization cache. Package source
+files and their own documentation/licenses live inside the corresponding
+package folders.
+
+.vscode/
+--------
+.vscode/settings.json
+  Workspace settings for Visual Studio Code. It enables Copilot session sync.
+
+.vs/
+----
+Visual Studio workspace data, such as project settings, editor layout, indexes,
+and caches. The files here are generated for the local development environment,
+not needed to run the website.
+
+Current .vs files:
+  .vs/ProjectSettings.json
+    Visual Studio project setting metadata.
+  .vs/VSWorkspaceState.json
+    Workspace state.
+  .vs/slnx.sqlite
+    Local workspace database.
+  .vs/threejs-project.slnx/v18/DocumentLayout.json
+    Saved editor document layout.
+  .vs/threejs-project.slnx/v18/.wsuo
+    Visual Studio workspace state data.
+  .vs/threejs-project.slnx/FileContentIndex/
+    Generated file-content index.
+  .vs/threejs-project/CopilotIndices/
+    Generated code-symbol index.
+
+.git/
+-----
+Git's internal version-control data: repository history, branches, and
+tracking information. It is managed by Git and is not part of the website.
+
+Typical workflow
+----------------
+1. Run "npm install" if dependencies are not installed.
+2. Run "npm run dev" to start Vite while developing.
+3. Open the homepage and use its links to visit the three algorithm pages.
+4. Run "npm run build" to regenerate the production files in dist/.

@@ -5,9 +5,14 @@ import { parseArrayInput } from '../utils/helpers.js';
 import { bindAnimationControls, getAnimationSpeed } from '../modules/animation-controller.js';
 import { renderCode as renderHighlightedCode } from '../modules/code-highlighter.js';
 import { updateInsertionStatistics } from '../modules/statistics.js';
+import { createCompletionAnimation } from '../modules/completion-animation.js';
 import {
+  BAR_DEPTH,
   createVisualization,
   createValueTexture,
+  getBarHeight,
+  getBarSpacing,
+  getBarWidth,
   resizeVisualization
 } from '../modules/renderer.js';
 
@@ -21,41 +26,34 @@ let phase = 'select';
 let playing = false;
 let last = performance.now();
 let elapsed = 0;
-let celebrationTime = -1;
+let completionPending = false;
+const completionAnimation = createCompletionAnimation();
 const stage = getElement('stage');
 const { scene, camera, renderer } = createVisualization(stage, { pixelRatio: 2.5 });
 
-function barWidth() {
-  return Math.min(0.9, 8.8 / values.length);
-}
-
-function barSpacing() {
-  return Math.min(0.9, 9.6 / values.length);
-}
-
 function makeItem(value, index) {
-  const height = 0.55 + value * 0.16;
-  const width = barWidth();
+  const height = getBarHeight(value, initial);
+  const width = getBarWidth(values.length);
   const material = new THREE.MeshStandardMaterial({
     color: BAR_COLORS[index % BAR_COLORS.length],
     roughness: 0.4,
     metalness: 0.08
   });
-  const mesh = new THREE.Mesh(new THREE.BoxGeometry(width, height, 1.35), material);
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(width, height, BAR_DEPTH), material);
   mesh.castShadow = true;
   mesh.userData = { value, height, tx: 0, ty: 0, tz: 0 };
   const front = new THREE.Mesh(
-    new THREE.PlaneGeometry(width * 0.78, Math.min(0.7, height * 0.5)),
+    new THREE.PlaneGeometry(width * 0.82, Math.min(0.7, height * 0.5)),
     new THREE.MeshBasicMaterial({ map: createValueTexture(value, 'insertion', renderer), transparent: true })
   );
-  front.position.z = 0.681;
+  front.position.z = BAR_DEPTH / 2 + 0.006;
   mesh.add(front);
   scene.add(mesh);
   return mesh;
 }
 
 function xAt(index) {
-  return (index - (values.length - 1) / 2) * barSpacing();
+  return (index - (values.length - 1) / 2) * getBarSpacing(values.length);
 }
 
 function layout() {
@@ -101,7 +99,7 @@ function advance() {
     if (i >= values.length) {
       playing = false;
       phase = 'done';
-      celebrationTime = 0;
+      completionPending = true;
       update();
       return;
     }
@@ -134,7 +132,8 @@ function reset() {
   key = null;
   phase = 'select';
   playing = false;
-  celebrationTime = -1;
+  completionPending = false;
+  completionAnimation.cancel();
   rebuild();
   update();
 }
@@ -173,20 +172,23 @@ function animate(now) {
     elapsed += delta;
     if (elapsed > 900 / getAnimationSpeed()) advance();
   }
-  if (phase === 'done' && celebrationTime >= 0) celebrationTime += delta;
   items.forEach((item, index) => {
     if (!item) return;
     item.position.x += (item.userData.tx - item.position.x) * 0.13;
-    let targetY = item.userData.ty;
-    if (phase === 'done' && celebrationTime >= index * 120 && celebrationTime < index * 120 + 400) {
-      const progress = (celebrationTime - index * 120) / 400;
-      targetY += Math.sin(progress * Math.PI) * 0.55;
-    }
-    item.position.y += (targetY - item.position.y) * 0.13;
+    item.position.y += (item.userData.ty - item.position.y) * 0.13;
     item.position.z += (item.userData.tz - item.position.z) * 0.13;
     item.material.emissive.setHex(item === key ? 0x552255 : 0x000000);
     item.material.emissiveIntensity = item === key ? 0.8 : 0;
   });
+  if (completionPending && items.every((item) => item
+    && Math.abs(item.position.x - item.userData.tx) < 0.002
+    && Math.abs(item.position.y - item.userData.ty) < 0.002
+    && Math.abs(item.position.z - item.userData.tz) < 0.002)) {
+    items.forEach((item) => item.position.set(item.userData.tx, item.userData.ty, item.userData.tz));
+    completionAnimation.start(items);
+    completionPending = false;
+  }
+  completionAnimation.update(delta, getAnimationSpeed());
   const tag = getElement('keyTag');
   if (key) {
     const position = key.position.clone();

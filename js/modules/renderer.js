@@ -1,6 +1,22 @@
 import * as THREE from 'three';
 import { BAR_COLORS } from '../utils/constants.js';
 
+export const BAR_DEPTH = 1.35;
+
+export function getBarSpacing(count) {
+  return Math.min(0.9, 9.6 / count);
+}
+
+export function getBarWidth(count) {
+  return Math.min(0.9, getBarSpacing(count) * 0.98);
+}
+
+export function getBarHeight(value, values) {
+  const minimum = Math.min(...values);
+  const maximum = Math.max(...values);
+  return maximum === minimum ? 1.8 : 0.65 + ((value - minimum) / (maximum - minimum)) * 2.95;
+}
+
 export function createVisualization(stage, { pixelRatio = 2, shadowType = THREE.PCFShadowMap } = {}) {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x211827);
@@ -72,19 +88,17 @@ export function createValueTexture(value, style, renderer) {
 }
 
 export function createComparisonBars(scene, values) {
-  const minimum = Math.min(...values);
-  const maximum = Math.max(...values);
-  const spacing = Math.min(0.9, 9.6 / values.length);
-  const width = Math.min(0.72, spacing * 0.76);
+  const spacing = getBarSpacing(values.length);
+  const width = getBarWidth(values.length);
 
   return values.map((value, index) => {
-    const height = maximum === minimum ? 1.8 : 0.65 + ((value - minimum) / (maximum - minimum)) * 2.95;
+    const height = getBarHeight(value, values);
     const material = new THREE.MeshStandardMaterial({
       color: BAR_COLORS[index % BAR_COLORS.length],
       roughness: 0.4,
       metalness: 0.08
     });
-    const bar = new THREE.Mesh(new THREE.BoxGeometry(width, height, 1.35), material);
+    const bar = new THREE.Mesh(new THREE.BoxGeometry(width, height, BAR_DEPTH), material);
     bar.castShadow = true;
     bar.position.set((index - (values.length - 1) / 2) * spacing, height / 2 + 0.1, 0);
     bar.userData = { value, height, id: index };
@@ -93,7 +107,7 @@ export function createComparisonBars(scene, values) {
       new THREE.PlaneGeometry(width * 0.82, Math.min(0.7, height * 0.5)),
       new THREE.MeshBasicMaterial({ map: createValueTexture(value, 'comparison'), transparent: true })
     );
-    label.position.z = 0.681;
+    label.position.z = BAR_DEPTH / 2 + 0.006;
     bar.add(label);
 
     const outline = new THREE.LineSegments(
@@ -110,7 +124,7 @@ export function createComparisonBars(scene, values) {
 }
 
 export function getBarX(index, count) {
-  return (index - (count - 1) / 2) * Math.min(0.9, 9.6 / count);
+  return (index - (count - 1) / 2) * getBarSpacing(count);
 }
 
 export function resizeVisualization(stage, renderer, camera, fitWidth = false) {
