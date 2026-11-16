@@ -24,3 +24,11 @@ The homepage is at `/`. The algorithm visualizers are available at:
 - `/pages/selection-sort.html`
 
 Create a production build with `npm run build`.
+
+##Homepage Preview
+
+<img width="1547" height="661" alt="image" src="https://github.com/user-attachments/assets/1ea92b35-1c94-46f1-8118-5f5fb1944772" />
+
+##Insertion Sort
+<img width="1301" height="792" alt="image" src="https://github.com/user-attachments/assets/ffc28d15-1320-449a-96bb-806bb0b80ca9" />
+
